@@ -1,0 +1,464 @@
+###############################################################################
+#
+# IAR ELF Linker V7.30.1.7746/W32 for ARM                 25/Feb/2017  13:50:51
+# Copyright 2007-2014 IAR Systems AB.
+#
+#    Output file  =  
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Exe\vcan_Kinetis.out
+#    Map file     =  
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\List\vcan_Kinetis.map
+#    Command line =  
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\Car.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\Control.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\diskio.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\ff.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\fuzzy_pid.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\main.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\misc.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_adc.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_can.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_conf.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_dac.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_dma.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_DWT.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_flash.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_flexbus.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_ftm.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_gpio.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_i2c.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_it.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_lptmr.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_mcg.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_PIT.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_port.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_rtc.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_sdhc.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_spi.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_SysTick.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_uart.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_usb.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\MK60_wdog.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\Motor.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\OLED.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\startup_MK60DZ10.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\Steer.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\system_MK60DZ10.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\USB.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\USB_CDC.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_ASCII.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_computer.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_key.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_LED.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_MMA7455.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_NRF24L0.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_RTC_count.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\VCAN_SCCB.o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj\vectors.o
+#        --redirect _Printf=_PrintfLargeNoMb --redirect _Scanf=_ScanfLargeNoMb
+#        -o
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Exe\vcan_Kinetis.out
+#        --map
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\List\vcan_Kinetis.map
+#        --config "F:\OurCar2017\Jerry_2017_2\Prj\IAR\config
+#        files\vcan_ROM_K60N512.icf"
+#        F:\OurCar2017\Jerry_2017_2\Prj\IAR\..\..\Lib\CMSIS\iar_cortexM4l_math.a
+#        --entry __iar_program_start --redirect __write=__write_buffered
+#        --inline --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x00000000 { ro section .intvec };
+"A2":  place at 0x00000410 { ro section .noinit };
+"P1":  place in [from 0x00000000 to 0x00080000] { ro, block CodeRelocate };
+"P2":  place in [from 0x1fff0410 to 0x20010000] {
+          rw, block CodeRelocateRam, block CSTACK, block HEAP };
+
+  Section              Kind        Address    Size  Object
+  -------              ----        -------    ----  ------
+"A1":                                        0x410
+  .intvec              const    0x00000000   0x410  vectors.o [1]
+                              - 0x00000410   0x410
+
+"P1", part 1 of 2:                             0x0
+  .rodata              const    0x00000410     0x0  zero_init3.o [5]
+
+"A2":                                          0x8
+  .noinit              ro code  0x00000410     0x8  startup_MK60DZ10.o [1]
+                              - 0x00000418     0x8
+
+"P1", part 2 of 2:                          0x3184
+  .text                ro code  0x00000418   0x840  OLED.o [1]
+  .text                ro code  0x00000c58    0x60  MK60_gpio.o [1]
+  .text                ro code  0x00000cb8    0x3c  MK60_port.o [1]
+  .text                ro code  0x00000cf4   0x6a8  fuzzy_pid.o [1]
+  .text                ro code  0x0000139c   0x388  Steer.o [1]
+  .text                ro code  0x00001724   0x170  MK60_adc.o [1]
+  .text                ro code  0x00001894    0x1c  I32ToDbl.o [4]
+  .text                ro code  0x000018b0   0x1a2  DblMul.o [4]
+  .text                ro code  0x00001a52    0x22  zero_init3.o [5]
+  .text                ro code  0x00001a74    0x90  DblToFlt.o [4]
+  .text                ro code  0x00001b04   0x29c  MK60_ftm.o [1]
+  .text                ro code  0x00001da0   0x378  Car.o [1]
+  .text                ro code  0x00002118    0x64  MK60_PIT.o [1]
+  .text                ro code  0x0000217c    0x34  MK60_SysTick.o [1]
+  .text                ro code  0x000021b0   0x348  VCAN_NRF24L0.o [1]
+  .text                ro code  0x000024f8   0x188  MK60_spi.o [1]
+  .text                ro code  0x00002680    0x78  misc.o [1]
+  .data_init                    0x000026f8   0x284  <Block>
+    Initializer bytes  ro data  0x000026f8   0x284  <for .data-1>
+  Veneer               ro code  0x0000297c     0x8  - Linker created -
+  .text                ro code  0x00002984   0x20c  MK60_mcg.o [1]
+  .text                ro code  0x00002b90   0x190  MK60_it.o [1]
+  .text                ro code  0x00002d20   0x118  Motor.o [1]
+  .text                ro code  0x00002e38    0xe8  DblAdd.o [4]
+  .text                ro code  0x00002f20    0x4c  DblToI32.o [4]
+  .text                ro code  0x00002f6c   0x16c  DblSub.o [4]
+  .text                ro code  0x000030d8   0x158  MK60_uart.o [1]
+  .text                ro code  0x00003230    0xcc  system_MK60DZ10.o [1]
+  .text                ro code  0x000032fc    0x2c  MK60_wdog.o [1]
+  .text                ro code  0x00003328    0xb4  main.o [1]
+  .text                ro code  0x000033dc    0x76  ABImemcpy_unaligned.o [5]
+  .text                ro code  0x00003454     0x6  ABImemclr.o [5]
+  .text                ro code  0x0000345c    0x5e  ABImemset.o [5]
+  CodeRelocate                  0x000034bc    0x3c  <Block>
+    Initializer bytes  ro data  0x000034bc    0x3c  <for CodeRelocateRam-1>
+  .text                ro code  0x000034f8    0x28  data_init.o [5]
+  .text                ro code  0x00003520    0x22  fpinit_M.o [4]
+  .iar.init_table      const    0x00003544    0x10  - Linker created -
+  .text                ro code  0x00003554    0x1a  cmain.o [5]
+  .text                ro code  0x0000356e     0x4  exit.o [3]
+  .text                ro code  0x00003574     0xa  cexit.o [5]
+  .text                ro code  0x00003580     0xc  XXexit.o [5]
+  .text                ro code  0x0000358c     0xc  cstartup_M.o [5]
+  .text                ro code  0x00003598     0x4  MK60_conf.o [1]
+                              - 0x0000359c  0x3184
+
+"P2":                                        0xd30
+  .data                         0x1fff0410   0x284  <Block>
+    .data-1                     0x1fff0410   0x284  <Init block>
+      .data            inited   0x1fff0410     0x1  Car.o [1]
+      .data            inited   0x1fff0414    0x74  fuzzy_pid.o [1]
+      .data            inited   0x1fff0488    0x10  fuzzy_pid.o [1]
+      .data            inited   0x1fff0498    0x10  fuzzy_pid.o [1]
+      .data            inited   0x1fff04a8    0x10  fuzzy_pid.o [1]
+      .data            inited   0x1fff04b8    0x10  fuzzy_pid.o [1]
+      .data            inited   0x1fff04c8     0x8  MK60_adc.o [1]
+      .data            inited   0x1fff04d0    0x20  MK60_ftm.o [1]
+      .data            inited   0x1fff04f0    0x14  MK60_gpio.o [1]
+      .data            inited   0x1fff0504    0x58  MK60_mcg.o [1]
+      .data            inited   0x1fff055c     0x4  MK60_mcg.o [1]
+      .data            inited   0x1fff0560    0x14  MK60_port.o [1]
+      .data            inited   0x1fff0574     0xc  MK60_spi.o [1]
+      .data            inited   0x1fff0580    0x18  MK60_uart.o [1]
+      .data            inited   0x1fff0598    0x1c  Motor.o [1]
+      .data            inited   0x1fff05b4    0x7c  Steer.o [1]
+      .data            inited   0x1fff0630    0x44  Steer.o [1]
+      .data            inited   0x1fff0674    0x20  VCAN_NRF24L0.o [1]
+  CodeRelocateRam               0x1fff0694    0x3c  <Block>
+    CodeRelocateRam-1           0x1fff0694    0x3c  <Init block>
+      .textrw          inited   0x1fff0694    0x3c  MK60_mcg.o [1]
+  .bss                          0x1fff06d0   0xa70  <Block>
+    .bss               zero     0x1fff06d0    0x21  Control.o [1]
+    .bss               zero     0x1fff06f2     0x2  MK60_it.o [1]
+    .bss               zero     0x1fff06f4    0x20  Control.o [1]
+    .bss               zero     0x1fff0714    0x10  MK60_it.o [1]
+    .bss               zero     0x1fff0724     0x8  Steer.o [1]
+    .bss               zero     0x1fff072c     0x4  Steer.o [1]
+    .bss               zero     0x1fff0730     0xc  system_MK60DZ10.o [1]
+    .bss               zero     0x1fff073c   0xa00  VCAN_NRF24L0.o [1]
+    .bss               zero     0x1fff113c     0x1  Control.o [1]
+                              - 0x1fff1140   0xd30
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0xa6d:
+          0x1fff06d0  0xa6d
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                 ro code  rw code  ro data  rw data
+    ------                 -------  -------  -------  -------
+F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj: [1]
+    Car.o                      888                 1        1
+    Control.o                                              66
+    MK60_PIT.o                 100
+    MK60_SysTick.o              52
+    MK60_adc.o                 368                 8        8
+    MK60_conf.o                  4
+    MK60_ftm.o                 668                32       32
+    MK60_gpio.o                 96                20       20
+    MK60_it.o                  400                         18
+    MK60_mcg.o                 524       60      152       92
+    MK60_port.o                 60                20       20
+    MK60_spi.o                 392                12       12
+    MK60_uart.o                344                24       24
+    MK60_wdog.o                 44
+    Motor.o                    280                28       28
+    OLED.o                   2 112
+    Steer.o                    904               192      204
+    VCAN_NRF24L0.o             840                32    2 592
+    fuzzy_pid.o              1 704               183      180
+    main.o                     180
+    misc.o                     120
+    startup_MK60DZ10.o           8
+    system_MK60DZ10.o          204                         12
+    vectors.o                                  1 040
+    ---------------------------------------------------------
+    Total:                  10 292       60    1 744    3 309
+
+command line: [2]
+    ---------------------------------------------------------
+    Total:
+
+dl7M_tlf.a: [3]
+    exit.o                       4
+    ---------------------------------------------------------
+    Total:                       4
+
+m7M_tlv.a: [4]
+    DblAdd.o                   232
+    DblMul.o                   418
+    DblSub.o                   364
+    DblToFlt.o                 144
+    DblToI32.o                  76
+    I32ToDbl.o                  28
+    fpinit_M.o                  34
+    ---------------------------------------------------------
+    Total:                   1 296
+
+rt7M_tl.a: [5]
+    ABImemclr.o                  6
+    ABImemcpy_unaligned.o      118
+    ABImemset.o                 94
+    XXexit.o                    12
+    cexit.o                     10
+    cmain.o                     26
+    cstartup_M.o                12
+    data_init.o                 40
+    zero_init3.o                34
+    ---------------------------------------------------------
+    Total:                     352
+
+    Gaps                         8                 2        4
+    Linker created               8                16
+-------------------------------------------------------------
+    Grand Total:            11 960       60    1 762    3 313
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.bss$$Base              0x1fff06d0          --   Gb  - Linker created -
+.bss$$Limit             0x1fff1140          --   Gb  - Linker created -
+.data$$Base             0x1fff0410          --   Gb  - Linker created -
+.data$$Limit            0x1fff0694          --   Gb  - Linker created -
+.data_init$$Base        0x000026f8          --   Gb  - Linker created -
+.data_init$$Limit       0x0000297c          --   Gb  - Linker created -
+?main                   0x00003555         Code  Gb  cmain.o [5]
+ABDistance              0x1fff071c    0x2  Data  Gb  MK60_it.o [1]
+ABDistance_filter       0x1fff0714    0x8  Data  Gb  MK60_it.o [1]
+ADCN                    0x1fff04c8    0x8  Data  Gb  MK60_adc.o [1]
+ADdata                  0x1fff05b4   0x54  Data  Gb  Steer.o [1]
+BSP_init                0x00001dd1   0x92  Code  Gb  Car.o [1]
+CalculateCurrentError   0x0000146d  0x1bc  Code  Gb  Steer.o [1]
+Chao_init               0x00001e63   0x1c  Code  Gb  Car.o [1]
+CodeRelocate$$Base      0x000034bc          --   Gb  - Linker created -
+CodeRelocate$$Limit     0x000034f8          --   Gb  - Linker created -
+CodeRelocateRam$$Base   0x1fff0694          --   Gb  - Linker created -
+CodeRelocateRam$$Limit  0x1fff06d0          --   Gb  - Linker created -
+CurrentABDistance       0x1fff071e    0x2  Data  Gb  MK60_it.o [1]
+DirectionControl        0x00001629   0xca  Code  Gb  Steer.o [1]
+DirectionPianCha        0x1fff0638   0x28  Data  Gb  Steer.o [1]
+DoubleError             0x1fff0668    0x4  Data  Gb  Steer.o [1]
+ECMAXMIN                0x0000137c   0x20  Data  Gb  fuzzy_pid.o [1]
+EMAXMIN                 0x0000135c   0x20  Data  Gb  fuzzy_pid.o [1]
+F6x8                    0x00000a30  0x228  Data  Gb  OLED.o [1]
+FTMN                    0x1fff04d0   0x10  Data  Gb  MK60_ftm.o [1]
+FTM_port_mux            0x00001b05  0x10e  Code  Lc  MK60_ftm.o [1]
+Fuzzy_Direction_D       0x00001019  0x304  Code  Gb  fuzzy_pid.o [1]
+Fuzzy_Direction_P       0x00000cf5  0x2f6  Code  Gb  fuzzy_pid.o [1]
+GPIOX                   0x1fff04f0   0x14  Data  Gb  MK60_gpio.o [1]
+LCD_Fill                0x00000483   0x30  Code  Gb  OLED.o [1]
+LCD_Init                0x000004b3   0xf8  Code  Gb  OLED.o [1]
+LCD_P6x8Str             0x000005ab   0x7c  Code  Gb  OLED.o [1]
+LCD_WrCmd               0x00000451   0x32  Code  Gb  OLED.o [1]
+LCD_WrDat               0x00000419   0x38  Code  Gb  OLED.o [1]
+LED_P6x8Char            0x00000627   0x60  Code  Gb  OLED.o [1]
+LED_PrintValueF         0x000007cd  0x254  Code  Gb  OLED.o [1]
+LED_PrintValueFP        0x00000687  0x144  Code  Gb  OLED.o [1]
+Motor_D                 0x1fff05b0    0x4  Data  Gb  Motor.o [1]
+Motor_Duty              0x1fff05a4    0x4  Data  Gb  Motor.o [1]
+Motor_GetSpeed          0x00002d51   0x1e  Code  Gb  Motor.o [1]
+Motor_I                 0x1fff05ac    0x4  Data  Gb  Motor.o [1]
+Motor_P                 0x1fff05a8    0x4  Data  Gb  Motor.o [1]
+Motor_SetSpeed          0x00002d21   0x30  Code  Gb  Motor.o [1]
+Motor_init              0x00001da1   0x22  Code  Gb  Car.o [1]
+NRF_ISR_RX_FIFO         0x1fff073c  0xa00  Data  Gb  VCAN_NRF24L0.o [1]
+Oled_Display            0x00001ec1  0x1d4  Code  Gb  Car.o [1]
+PE                      0x1fff0415    0x1  Data  Gb  fuzzy_pid.o [1]
+PEC                     0x1fff0414    0x1  Data  Gb  fuzzy_pid.o [1]
+PIT0_IRQHandler         0x00002b91   0x50  Code  Gb  MK60_it.o [1]
+PORTA_IRQHandler        0x00002be1   0xc4  Code  Gb  MK60_it.o [1]
+PORTE_IRQHandler        0x00002ca5   0x3e  Code  Gb  MK60_it.o [1]
+PORTX                   0x1fff0560   0x14  Data  Gb  MK60_port.o [1]
+RX_ADDRESS              0x1fff068c    0x8  Data  Gb  VCAN_NRF24L0.o [1]
+Read_AD                 0x0000139d   0xd0  Code  Gb  Steer.o [1]
+Region$$Table$$Base     0x00003544          --   Gb  - Linker created -
+Region$$Table$$Limit    0x00003554          --   Gb  - Linker created -
+Reset_Handler           0x00000411         Code  Gb  startup_MK60DZ10.o [1]
+SPIN                    0x1fff0574    0xc  Data  Gb  MK60_spi.o [1]
+Sensor_AD_init          0x00001e7f   0x42  Code  Gb  Car.o [1]
+Speed_Control           0x00002d6f   0xbe  Code  Gb  Motor.o [1]
+Speed_err               0x1fff0598    0x8  Data  Gb  Motor.o [1]
+Steer_D                 0x1fff0664    0x4  Data  Gb  Steer.o [1]
+Steer_P                 0x1fff0660    0x4  Data  Gb  Steer.o [1]
+Steer_init              0x00001dc3    0xe  Code  Gb  Car.o [1]
+SteeringZkb             0x1fff0634    0x2  Data  Gb  Steer.o [1]
+TX_ADDRESS              0x1fff0684    0x8  Data  Gb  VCAN_NRF24L0.o [1]
+TargetSpeed             0x1fff05a2    0x2  Data  Gb  Motor.o [1]
+TimeCount               0x1fff06f2    0x2  Data  Gb  MK60_it.o [1]
+UARTN                   0x1fff0580   0x18  Data  Gb  MK60_uart.o [1]
+UD                      0x1fff0484    0x4  Data  Gb  fuzzy_pid.o [1]
+UD1                     0x1fff04a8   0x10  Data  Gb  fuzzy_pid.o [1]
+UD2                     0x1fff04b8   0x10  Data  Gb  fuzzy_pid.o [1]
+UP                      0x1fff0480    0x4  Data  Gb  fuzzy_pid.o [1]
+UP1                     0x1fff0488   0x10  Data  Gb  fuzzy_pid.o [1]
+UP4                     0x1fff0498   0x10  Data  Gb  fuzzy_pid.o [1]
+__BOOT_STACK_ADDRESS {Abs}
+                        0x2000fff8          --   Gb  command line/config [2]
+__VECTOR_RAM {Abs}      0x1fff0000          --   Gb  command line/config [2]
+__VECTOR_TABLE {Abs}    0x00000000          --   Gb  command line/config [2]
+__aeabi_d2f             0x00001a75         Code  Gb  DblToFlt.o [4]
+__aeabi_d2iz            0x00002f21         Code  Gb  DblToI32.o [4]
+__aeabi_dadd            0x00002e39         Code  Gb  DblAdd.o [4]
+__aeabi_dmul            0x000018b1         Code  Gb  DblMul.o [4]
+__aeabi_memclr          0x00003455         Code  Gb  ABImemclr.o [5]
+__aeabi_ui2d            0x00001895         Code  Gb  I32ToDbl.o [4]
+__cmain                 0x00003555         Code  Gb  cmain.o [5]
+__code_start__ {Abs}    0x00000410          --   Gb  command line/config [2]
+__exit                  0x00003581         Code  Gb  XXexit.o [5]
+__iar_Memset_word       0x0000345d         Code  Gb  ABImemset.o [5]
+__iar_d2uiz             0x00002f4d         Code  Gb  DblToI32.o [4]
+__iar_dadd              0x00002e4d         Code  Gb  DblAdd.o [4]
+__iar_data_init3        0x000034f9   0x28  Code  Gb  data_init.o [5]
+__iar_dsub              0x00002f6d         Code  Gb  DblSub.o [4]
+__iar_dsubStart         0x00002f7f         Code  Gb  DblSub.o [4]
+__iar_init_vfp          0x00003521         Code  Gb  fpinit_M.o [4]
+__iar_program_start     0x0000358d         Code  Gb  cstartup_M.o [5]
+__iar_ui2d              0x00001899         Code  Gb  I32ToDbl.o [4]
+__iar_unaligned___aeabi_memcpy
+                        0x000033dd         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned___aeabi_memcpy4
+                        0x000033fd         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_unaligned___aeabi_memcpy8
+                        0x000033fd         Code  Gb  ABImemcpy_unaligned.o [5]
+__iar_zero_init3        0x00001a53   0x22  Code  Gb  zero_init3.o [5]
+__vector_table          0x00000000  0x410  Data  Gb  vectors.o [1]
+_call_main              0x00003561         Code  Gb  cmain.o [5]
+_exit                   0x00003575         Code  Gb  cexit.o [5]
+_main                   0x0000356b         Code  Gb  cmain.o [5]
+ad_ave                  0x0000180f   0x7c  Code  Gb  MK60_adc.o [1]
+ad_max                  0x1fff0608   0x14  Data  Gb  Steer.o [1]
+ad_min                  0x1fff061c   0x14  Data  Gb  Steer.o [1]
+adc_init                0x00001725   0xea  Code  Gb  MK60_adc.o [1]
+bus_clk_khz             0x1fff0738    0x4  Data  Gb  system_MK60DZ10.o [1]
+chaoshengboTime         0x1fff0720    0x4  Data  Gb  MK60_it.o [1]
+circle_flag             0x1fff0630    0x1  Data  Gb  Steer.o [1]
+common_startup          0x00003283   0x48  Code  Gb  system_MK60DZ10.o [1]
+compensate              0x1fff072c    0x4  Data  Gb  Steer.o [1]
+core_clk_khz            0x1fff0730    0x4  Data  Gb  system_MK60DZ10.o [1]
+core_clk_mhz            0x1fff0734    0x4  Data  Gb  system_MK60DZ10.o [1]
+count                   0x1fff0724    0x1  Data  Gb  Steer.o [1]
+default_isr             0x00003599    0x2  Code  Gb  MK60_conf.o [1]
+dianya                  0x1fff0728    0x4  Data  Gb  Steer.o [1]
+direction_offset        0x1fff0632    0x2  Data  Gb  Steer.o [1]
+exit                    0x0000356f    0x4  Code  Gb  exit.o [3]
+ftm_mod                 0x1fff04e0   0x10  Data  Lc  MK60_ftm.o [1]
+ftm_pwm_duty            0x00001caf   0x46  Code  Gb  MK60_ftm.o [1]
+ftm_pwm_init            0x00001c13   0x9c  Code  Gb  MK60_ftm.o [1]
+ftm_quad_clean          0x00001d87    0x2  Code  Gb  MK60_ftm.o [1]
+ftm_quad_get            0x00001d7b    0xc  Code  Gb  MK60_ftm.o [1]
+ftm_quad_init           0x00001cf5   0x86  Code  Gb  MK60_ftm.o [1]
+gpio_get                0x00000c9b   0x18  Code  Gb  MK60_gpio.o [1]
+gpio_init               0x00000c59   0x42  Code  Gb  MK60_gpio.o [1]
+host_flag               0x1fff06f0    0x1  Data  Gb  Control.o [1]
+main                    0x00003329   0xb4  Code  Gb  main.o [1]
+mcg_cfg                 0x1fff0504   0x58  Data  Gb  MK60_mcg.o [1]
+mcg_div                 0x1fff055c    0x4  Data  Gb  MK60_mcg.o [1]
+mcg_div_count           0x00002985  0x182  Code  Gb  MK60_mcg.o [1]
+nrf_handler             0x000023d1  0x11a  Code  Gb  VCAN_NRF24L0.o [1]
+nrf_irq_tx_addr         0x1fff067c    0x4  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_irq_tx_flag         0x1fff0678    0x1  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_irq_tx_pnum         0x1fff0680    0x4  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_mode                0x1fff0674    0x1  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_rx                  0x00002333   0x9e  Code  Gb  VCAN_NRF24L0.o [1]
+nrf_rx_flag             0x1fff0677    0x1  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_rx_front            0x1fff0675    0x1  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_rx_mode             0x000021d5   0xd0  Code  Gb  VCAN_NRF24L0.o [1]
+nrf_rx_rear             0x1fff0676    0x1  Data  Gb  VCAN_NRF24L0.o [1]
+nrf_tx_mode             0x000022a5   0x8e  Code  Lc  VCAN_NRF24L0.o [1]
+nrf_writebuf            0x000021b1   0x24  Code  Lc  VCAN_NRF24L0.o [1]
+page                    0x1fff0410    0x1  Data  Gb  Car.o [1]
+parallel_err            0x1fff066c    0x4  Data  Gb  Steer.o [1]
+pit1Init                0x00002119   0x1a  Code  Gb  MK60_PIT.o [1]
+pit_init                0x00002133   0x30  Code  Gb  MK60_PIT.o [1]
+pll_init                0x00002b07   0x7c  Code  Gb  MK60_mcg.o [1]
+port_init               0x00000cb9   0x2c  Code  Gb  MK60_port.o [1]
+realSpeed               0x1fff05a0    0x2  Data  Gb  Motor.o [1]
+ruleD                   0x1fff044c   0x34  Data  Gb  fuzzy_pid.o [1]
+ruleP                   0x1fff0418   0x34  Data  Gb  fuzzy_pid.o [1]
+rx_nrf_flag             0x1fff113c    0x1  Data  Gb  Control.o [1]
+rxbuf                   0x1fff06f4   0x20  Data  Gb  Control.o [1]
+set_sys_dividers        0x1fff0695   0x3c  Code  Gb  MK60_mcg.o [1]
+set_vector_handler      0x00002687    0x8  Code  Gb  misc.o [1]
+spi_mosi                0x000024f9   0x94  Code  Gb  MK60_spi.o [1]
+spi_mosi_cmd            0x00002599   0xd6  Code  Gb  MK60_spi.o [1]
+start                   0x00003231   0x1e  Code  Gb  system_MK60DZ10.o [1]
+sysinit                 0x0000324f   0x34  Code  Gb  system_MK60DZ10.o [1]
+systick_delay_ms        0x0000217d   0x2a  Code  Gb  MK60_SysTick.o [1]
+txbuf                   0x1fff06d0   0x20  Data  Gb  Control.o [1]
+uart_init               0x000030d9  0x148  Code  Gb  MK60_uart.o [1]
+vcan_cpy                0x00002699   0x60  Code  Gb  misc.o [1]
+vertical_err            0x1fff0670    0x4  Data  Gb  Steer.o [1]
+wdog_disable            0x000032fd   0x26  Code  Gb  MK60_wdog.o [1]
+write_vtor              0x00002681    0x6  Code  Gb  misc.o [1]
+
+
+[1] = F:\OurCar2017\Jerry_2017_2\Prj\IAR\FX15_Release\Obj
+[2] = command line
+[3] = dl7M_tlf.a
+[4] = m7M_tlv.a
+[5] = rt7M_tl.a
+
+  11 960 bytes of readonly  code memory
+      60 bytes of readwrite code memory
+   1 762 bytes of readonly  data memory
+   3 313 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
