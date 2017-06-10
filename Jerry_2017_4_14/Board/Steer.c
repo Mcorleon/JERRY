@@ -251,7 +251,7 @@ void CalculateCurrentError()
            }
          
         if(dir_change==2)
-         {
+        {
           
            if(circle_flag_count>=100)
           {
@@ -268,12 +268,11 @@ void CalculateCurrentError()
           {
            DirectionPianCha[0] = -0.9*DirectionPianCha[0] ;
           }
-          else if(dir_change==0)
+        }
+        else if(dir_change==0)
           {
              DirectionPianCha[0] = 0.7*DirectionPianCha[0] ;
           }
-       
-      }
     }
    }
     else if(circle_right==1||back_car_dir_rx==2)//ÓÒÂ·¹ýÔ²»·
@@ -352,9 +351,10 @@ void DirectionControl()
      DirectionPianCha[3] = DirectionPianCha[2];
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
-     UP = UP0;UD = UD3; 
+     
+     UP = UP0;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
-    // Steer_D=Fuzzy_Direction_D(DirectionPianCha[0]*10,DoubleError*100);
+
  
      
      SteeringZkb =SD5_mid + (s16)((Steer_P*DirectionPianCha[0])+Steer_D*(DoubleError));

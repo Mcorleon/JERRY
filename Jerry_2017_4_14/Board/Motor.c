@@ -90,79 +90,9 @@ void Motor_GetSpeed()
 //   realspeed[1]= realspeed[0];
 //   realspeed[0]= realSpeed;
 }
-void CalSpeed()
-{
-  if(ABS(DirectionPianCha[0]) <=4.5) //偏差小于4.5
-   {
-      zhidao_num++;
-      if(zhidao_num>30)
-      zhidao_num=30;
-   }
-   else 
-   {
-      zhidao_num=0; 
-   }
 
-  
-  //判断为直道
-   if(zhidao_num>5 && Straight_flag==0) 
-   {       
-          Straight_flag=1; //直道标志 
-          ruwan_flag=0;   //入弯清零 
-          wandao_flag =0;  //在弯清零
-   }  
-  
-  
-   //判断为入弯
-   if(Straight_flag==1 && ruwan_flag==0 && wandao_flag==0 ) 
-   {  
 
-      if(ABS(DirectionPianCha[0]) >=4.5 && ABS(DirectionPianCha[1]) >=4.5 )
-      { 
-        ruwan_flag=1; //入弯标志
-        Straight_flag =0; //直道清零 
-        wandao_flag =0; 
-        
-        if(longStraight_flag==1)  //长直道入弯
-        { 
-            LongS_to_W_flag=1;  //长直道入弯
-        }
-        else
-             LongS_to_W_flag=0;
-       // speed.Instraightjishu=0; //直道计数清零 
-       // speed.longStraight_flag=0;
-      }
-   }
-  
-  
-  //判断为在弯
-   if( ruwan_flag==1 && wandao_flag==0 && Straight_flag ==0) 
-   {
-       if(ABS(DirectionPianCha[0]) >= 10 && ABS(DirectionPianCha[1]) >=10)
-       {
-          ruwan_flag=0; //入弯标志
-          wandao_flag =1; //直道清零
-          Straight_flag =0;
-          Instraightjishu=0; //直道计数清零
-          longStraight_flag=0;
-          LongS_to_W_flag=0;
-       }   
-   }
-  
-  
-  //直道计数
-   if(Straight_flag==1 && ruwan_flag==0  && wandao_flag==0  ) //在直道（非出弯状态）
-   {
-      if(realSpeed>=160) //平均速度大于150,2m
-       Instraightjishu++;  //直道计数++   
-   
-     if(Instraightjishu>20) //限幅，40*2cm=80cm-120cm  ----->设定加速距离。
-     { 
-        longStraight_flag=1; //长直道
-        Instraightjishu=0;
-     } 
-   }
-}
+
 
 void Motor_Control()
 {
@@ -260,7 +190,7 @@ void Motor_Control()
       stop_flag=0;
       takeoff_over_rx=0;
      }
-      if(stop_flag==1||start_flag==0)    
+      if(stop_flag==1)    
         TargetSpeed=0;
   
 //   speed_filter_error[2] = speed_filter_error[1];
@@ -281,6 +211,8 @@ void Motor_Control()
     if(Motor_Duty>Motor_Speed_MAX)Motor_Duty=Motor_Speed_MAX;
     if(Motor_Duty<Motor_Speed_MIN) Motor_Duty=Motor_Speed_MIN;
     
-
+  if(start_flag==0)
+     Motor_Duty=0;
+  
     Motor_SetSpeed(Motor_Duty);
 }

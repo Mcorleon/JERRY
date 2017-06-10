@@ -50,10 +50,9 @@ void PIT0_IRQHandler() // 每1MS执行1次
    {
 
      Motor_GetSpeed();//读编码器
-     //CalSpeed();
      Motor_Control();//速度控制
    // Motor_SetSpeed(2000);
-     //protect();
+
      if(realSpeed<=15&&overtake_mode==0&&RunTime>2000)
        Motor_SetSpeed(0);
      

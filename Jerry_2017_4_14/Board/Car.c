@@ -51,7 +51,7 @@ void BSP_init()
         gpio_init (PTA17, GPO,1);
         
         
-        
+        //超车模式选择
          if(BSP6==1)
         {
           overtake_mode=1;
@@ -63,7 +63,7 @@ void Chao_init()
 {
         //超声波
         pit1Init();
-        gpio_init(PTA11,GPI,0);      //超声波接收模块的DO接口使用PTA19
+        gpio_init(PTA11,GPI,0);      //超声波接收模块的DO接口使用PTA11 stateA9
          gpio_init(PTA9,GPI,0);
           gpio_init(PTC6,GPO,0);
         port_init(PTA11, ALT1  | IRQ_EITHER |PULLUP);  //   GPIO模式，上下边沿触发，上拉       
