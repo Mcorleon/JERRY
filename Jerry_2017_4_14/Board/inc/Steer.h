@@ -6,8 +6,8 @@
 #define   SD5_FTM     FTM2       //FTM模块
 #define   SD5_CH      FTM_CH0    //通道 
 #define   SD5_mid     442   //中值   434   440
-#define   SD5_Lmax    345   // 最左  354   360
-#define   SD5_Rmax    540   // 最右  514   520
+#define   SD5_Lmax    360   // 最左  354   360
+#define   SD5_Rmax    530   // 最右  514   520
 
 typedef struct AdData{
 

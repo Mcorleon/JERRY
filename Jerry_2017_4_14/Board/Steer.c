@@ -4,7 +4,7 @@ struct AdData ADdata;
 float dianya;
 
 float Steer_P = 9.5 ; //±ÈÀý
-float Steer_D =170;  //Î¢·Ö
+float Steer_D =100;  //Î¢·Ö
 float DoubleError;
 s16 direction_offset=0;
 s16 SteeringZkb=0;
@@ -352,7 +352,7 @@ void DirectionControl()
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
      
-     UP = UP0;
+     UP = UP3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
 
  
