@@ -4,14 +4,13 @@ struct AdData ADdata;
 float dianya;
 
 float Steer_P = 9.5 ; //比例
-float Steer_D =100;  //微分
+float Steer_D =110;  //微分
 float DoubleError;
 s16 direction_offset=0;
 s16 SteeringZkb=0;
 s16 Last_SteeringZkb=0;
 uint8 dir_flag;
 float  DirectionPianCha[10] = {0.0}; //取三次偏差数组
-float  baziPiancha=0;
 float ad_max=100 ;
 float ad_min=0;
 //其中，ad_min 是给定的下限值，ad_max 是实测的上限值。
@@ -102,8 +101,9 @@ void CalculateCurrentError()
       {
         if(ABS(ad_left-ad_mid)<=20&&ABS(ad_right-ad_mid)<=20&&ABS(ad_left-ad_right)<=20)
         {  
-           if(ad_vr<=30&&ad_vm<=30&&ad_vl<=30)
+           if(ad_vr<=50&&ad_vm<=12&&ad_vl<=50)
            {              
+              if(ABS(ad_vr-ad_vl)<=20)
               circle_flag=1;
            }
         } 
@@ -157,7 +157,7 @@ void CalculateCurrentError()
 
    if(circle_flag==0)
    {
-      if(ABS(DirectionPianCha[1])>=7)
+      if(ABS(DirectionPianCha[1])>=8)
      {
         if(DirectionPianCha[1]>0)
         {
@@ -257,16 +257,16 @@ void CalculateCurrentError()
           {
             if(ad_right>=ad_left)
             {
-              DirectionPianCha[0] = -0.9*DirectionPianCha[0];
+              DirectionPianCha[0] = -DirectionPianCha[0];
             }
             else   if(ad_left>ad_right)
             {
-              DirectionPianCha[0] = 0.9*DirectionPianCha[0];
+              DirectionPianCha[0] = DirectionPianCha[0];
             }
           }
           else if(circle_flag_count<100)
           {
-           DirectionPianCha[0] = -0.9*DirectionPianCha[0] ;
+           DirectionPianCha[0] = -DirectionPianCha[0] ;
           }
         }
         else if(dir_change==0)
@@ -302,16 +302,16 @@ void CalculateCurrentError()
            {
              if(ad_left>=ad_right)
             {
-              DirectionPianCha[0] = 0.9*DirectionPianCha[0];
+              DirectionPianCha[0] = DirectionPianCha[0];
             }
             else   if(ad_right>ad_left)
             {
-              DirectionPianCha[0] = -0.9*DirectionPianCha[0];
+              DirectionPianCha[0] = -DirectionPianCha[0];
             }
            }
            else if(circle_flag_count<100)
            {
-            DirectionPianCha[0] = 0.9*DirectionPianCha[0];
+            DirectionPianCha[0] = DirectionPianCha[0];
            }
          }
           else if(dir_change==0)
@@ -353,7 +353,9 @@ void DirectionControl()
      DirectionPianCha[1] = DirectionPianCha[0];
      
      UP = UP3;
+     UD = UD3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
+   //  Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));
 
  
      

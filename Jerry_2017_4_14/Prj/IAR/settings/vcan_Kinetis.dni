@@ -14,7 +14,7 @@ TraceBufferSize=0x00010000
 TraceStallIfFIFOFull=0x00000000
 TracePortSize=0x00000004
 [DebugChecksum]
-Checksum=736789432
+Checksum=1340843915
 [Exceptions]
 StopOnUncaught=_ 0
 StopOnThrow=_ 0
@@ -26,13 +26,6 @@ ShowArgs=0
 MixedMode=1
 [FlashMemory]
 FlashEraseSelection=0 1 
-[Trace1]
-Enabled=0
-ShowSource=1
-[Disassemble mode]
-mode=0
-[Breakpoints2]
-Count=0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
@@ -40,6 +33,18 @@ Category=_ 0
 [TermIOLog]
 LoggingEnabled=_ 0
 LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=1
+Graph=0
+Symbiont=0
+Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Count=0
 [Aliases]
 A0=_ "F:\OurCar2017\Jerry_2017_1\Chip\src\IAR\system_MK60DZ10.c" ""
 A1=_ "F:\OurCar2017\Jerry_2017_1\Chip\src\MK60_wdog.c" ""
@@ -50,11 +55,3 @@ A5=_ "F:\OurCar2017\Jerry_2017_3.19\Lib\CMSIS\Inc\core_cm4.h" ""
 A6=_ "F:\OurCar2017\Jerry_2017_3.8\Jerry_2017_2\Chip\src\IAR\system_MK60DZ10.c" ""
 Count=7
 SuppressDialog=1
-[CallStackLog]
-Enabled=0
-[DriverProfiling]
-Enabled=0
-Mode=1
-Graph=0
-Symbiont=0
-Exclusions=
