@@ -157,7 +157,7 @@ void CalculateCurrentError()
 
    if(circle_flag==0)
    {
-      if(ABS(DirectionPianCha[1])>=8)
+      if(ABS(DirectionPianCha[1])>=10)
      {
         if(DirectionPianCha[1]>0)
         {
@@ -352,7 +352,7 @@ void DirectionControl()
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
      
-     UP = UP3;
+     UP = UP1;
      UD = UD3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
    //  Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));
