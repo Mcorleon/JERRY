@@ -96,32 +96,46 @@ void Motor_GetSpeed()
 
 void Motor_Control()
 {
-
+   if(ADdata.ResultCenter[0]>=80) 
+   {
+      zhidao_num++;
+      if(zhidao_num>30)
+      zhidao_num=30;
+   }
+   else  
+   {
+     zhidao_num=0; 
+     Straight_flag=0;
+   }
+   if(zhidao_num>=8 && Straight_flag==0) 
+   {       
+     Straight_flag=1; //直道标志 
+   }   
   
   if(host_flag == 0)//前车
   {
-        if(BSP1==1)
-        {
-           UFF=UFF0;
-        }
-        else if(BSP2==1)
-        {
-          UFF=UFF1;
-        }
-        else if(BSP3==1)
-        {
-          UFF=UFF2;
-        }
-        else if(BSP4==1)
-        {
-          UFF=UFF3; 
-        }
-         else if(BSP5==1)
-        {
-          UFF=UFF4; 
-        }
+//        if(BSP1==1)
+//        {
+//           UFF=UFF0;
+//        }
+//        else if(BSP2==1)
+//        {
+//          UFF=UFF1;
+//        }
+//        else if(BSP3==1)
+//        {
+//          UFF=UFF2;
+//        }
+//        else if(BSP4==1)
+//        {
+//          UFF=UFF3; 
+//        }
+//         else if(BSP5==1)
+//        {
+//          UFF=UFF4; 
+//        }
        
-       //UFF=UFF3;
+       UFF=UFF2;
        Track_complexity=ABS(DirectionPianCha[0]*10) ;                //赛道复杂程度
        Prospect_See =ABS(DoubleError*100);  
        TargetSpeed = FuzzySet_Speed(Track_complexity,Prospect_See);

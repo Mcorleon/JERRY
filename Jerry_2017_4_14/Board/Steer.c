@@ -28,6 +28,8 @@ uint8  takeoff_over_rx;
 uint8  no_takeoff_tx;
 uint8  no_takeoff_rx;
 uint8  stop_dajiao;
+uint8 circle_level=0;
+uint8 chaoche=0;
 
 
 
@@ -104,7 +106,21 @@ void CalculateCurrentError()
            if(ad_vr<=50&&ad_vm<=12&&ad_vl<=50)
            {              
               if(ABS(ad_vr-ad_vl)<=20)
-              circle_flag=1;
+              {
+                if(circle_flag==0)
+                {
+                    circle_flag=1;
+                    circle_level++;
+                    if((BSP1==1&&circle_level==1)||(BSP2==1&&circle_level==2)||(BSP3==1&&circle_level==3))
+                    {
+                      chaoche=1;
+                    }
+                    else
+                    {
+                     chaoche=0;
+                    }
+                }
+              }
            }
         } 
         
@@ -114,6 +130,7 @@ void CalculateCurrentError()
   if((ad_mid>70||ad_left>70||ad_right>70)&&circle_flag==1)
     {
       circle_flag=0;
+      chaoche=0;
       already_in_circle=0;
       circle_flag_count=0;
       dir_change=0;
@@ -152,6 +169,13 @@ void CalculateCurrentError()
         DirectionPianCha[0] = 15.0*ad_mid/ad_max - 15.0;
 
     }
+   
+   if(Straight_flag==1)
+   {
+     DirectionPianCha[0]=0.8*DirectionPianCha[0];
+   }
+
+
     //负的左转
 
 
@@ -182,13 +206,13 @@ void CalculateCurrentError()
    else if(circle_flag==1)//到圆环了
    { 
 
-     if( host_flag==0&&overtake_mode==1)//前车通知后车有圆环
+     if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车通知后车有圆环
      {
       circle_ready_tx=1;
       takeoff_over_tx=0;
       no_takeoff_tx=0;
      }
-     else if(host_flag==1&&overtake_mode==1)
+     else if(host_flag==1&&overtake_mode==1&&chaoche==1)
      {
        if(back_car_dir_rx==1)
        {
@@ -207,15 +231,17 @@ void CalculateCurrentError()
        if(DirectionPianCha[1]>0)
        {
           circle_right=1;    //前车右过 通知后车左过
+          if(chaoche==1)
           back_car_dir_tx=1;
        }
        else if(DirectionPianCha[1]<0)
        {
           circle_left=1;          //前车左过 通知后车右过
+          if(chaoche==1)
           back_car_dir_tx=2;
        }
      }
-     else  if(circle_left==0&&circle_right==0&& host_flag==1&&overtake_mode==0) //后车在不超车模式下判断姿态
+     else  if(circle_left==0&&circle_right==0&& host_flag==1&&(overtake_mode==0||chaoche==0)) //后车在不超车模式下判断姿态
      {
        if(DirectionPianCha[1]>0)
        {
@@ -232,6 +258,7 @@ void CalculateCurrentError()
           
     if(circle_left==1||back_car_dir_rx==1)//左路过圆环
     {
+      if(chaoche==1)
        back_car_dir_tx=2;
        if(circle_flag_count<=50) 
        {
@@ -243,7 +270,7 @@ void CalculateCurrentError()
            if(ad_right>ad_left&&dir_change==0)
            {
             dir_change=2;
-             if( host_flag==0&&overtake_mode==1)//前车停下 超车准备
+             if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
             {
              stop_flag=1;
              host_flag=2;
@@ -277,6 +304,7 @@ void CalculateCurrentError()
    }
     else if(circle_right==1||back_car_dir_rx==2)//右路过圆环
     {
+      if(chaoche==1)
        back_car_dir_tx=1;
          if(circle_flag_count<=50) 
        {
@@ -288,7 +316,7 @@ void CalculateCurrentError()
            if(ad_left>ad_right&&dir_change==0)
            {
             dir_change=1;
-           if( host_flag==0&&overtake_mode==1)//前车停下 超车准备
+           if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
             {
              stop_flag=1;
              host_flag=2;
