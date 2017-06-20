@@ -365,13 +365,13 @@ void DirectionControl()
      
      DoubleError = DirectionPianCha[0] - DirectionPianCha[1];
 
-      if(DoubleError>0.65)
+      if(DoubleError>1)
       {
-        DoubleError=0.65;
+        DoubleError=1;
       }
-      else if(DoubleError<-0.65)
+      else if(DoubleError<-1)
       {
-        DoubleError=-0.65;
+        DoubleError=-1;
       }
        DirectionPianCha[0]=DirectionPianCha[1]+DoubleError;
   
@@ -380,7 +380,7 @@ void DirectionControl()
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
      
-     UP = UP1;
+     UP = UP4;
      UD = UD3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
    //  Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));
