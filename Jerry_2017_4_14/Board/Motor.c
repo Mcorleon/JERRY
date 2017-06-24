@@ -135,7 +135,7 @@ void Motor_Control()
 //          UFF=UFF4; 
 //        }
        
-       UFF=UFF3;
+       UFF=UFF4;
        Track_complexity=ABS(DirectionPianCha[0]*10) ;                //赛道复杂程度
        Prospect_See =ABS(DoubleError*100);  
        TargetSpeed = FuzzySet_Speed(Track_complexity,Prospect_See);
@@ -196,14 +196,15 @@ void Motor_Control()
      
        if(circle_ready_rx==1&&circle_flag==0&&host_flag==1)
          TargetSpeed=60;
-       else if(circle_flag==1)
+       else if(circle_flag==1&&dir_change==0)
          TargetSpeed=60;
-       
+       else if(circle_flag==1&&dir_change!=0)
+         TargetSpeed=75;
        if(takeoff_over_rx==1&&host_flag==2)//超车完成了
-     {
-      stop_flag=0;
-      takeoff_over_rx=0;
-     }
+         {
+          stop_flag=0;
+          takeoff_over_rx=0;
+         }
       if(stop_flag==1)    
         TargetSpeed=0;
   

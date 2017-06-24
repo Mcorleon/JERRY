@@ -174,10 +174,10 @@ void send_data()
         var[1] = ADdata.ResultCenter[0];
         var[2] =ADdata.ResultRight[0];
         var[3] = DirectionPianCha[0]*10;
-        var[4] =host_flag*100;//DoubleError*100;circle_flag_count ABDistance_set
+        var[4] =DoubleError*100;//DoubleError*100;circle_flag_count ABDistance_set
         var[5] = realSpeed;//ABD_err realSpeed host_flag
         var[6] = circle_flag*100;//Steer_P*10 TargetSpeed circle_flag
-        var[7] = dir_change*10;//direction_offset  Motor_Duty ABDistance dir_change
+        var[7] = direction_offset;//direction_offset  Motor_Duty ABDistance dir_change
 
       vcan_sendware(var, sizeof(var));
 }

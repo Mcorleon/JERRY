@@ -66,7 +66,7 @@ extern float dianya;
 extern void Read_AD();
 extern void CalculateCurrentError();
 extern void DirectionControl();
-extern void Sensor_To_One();
+extern void Circle_Cal();
 extern float Steer_P ;    //±ÈÀý
 extern float Steer_D ;  //Î¢·Ö
 extern float  DirectionPianCha[10] ;

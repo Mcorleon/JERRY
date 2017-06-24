@@ -4,7 +4,7 @@ struct AdData ADdata;
 float dianya;
 
 float Steer_P = 9.5 ; //比例
-float Steer_D =110;  //微分
+float Steer_D =120;  //微分
 float DoubleError;
 s16 direction_offset=0;
 s16 SteeringZkb=0;
@@ -83,11 +83,9 @@ void Read_AD()
    
 
 }
-
-
-void CalculateCurrentError()
+void Circle_Cal()
 {
-   u16 ad_left,ad_right,ad_mid,ad_vl,ad_vm,ad_vr;
+  u16 ad_left,ad_right,ad_mid,ad_vl,ad_vm,ad_vr;
    
    ad_left=ADdata.ResultLeft[0];
    ad_mid = ADdata.ResultCenter[0];
@@ -97,13 +95,13 @@ void CalculateCurrentError()
    ad_vr=ADdata.V_Right[0];
    
    //圆环判断
-   if(ad_left<=55&&ad_mid<=65&&ad_right<=55)
+   if(ad_left<=55&&ad_mid<=60&&ad_right<=55)
     {
       if(ad_left>=20&&ad_mid>=20&&ad_right>=20)
       {
         if(ABS(ad_left-ad_mid)<=20&&ABS(ad_right-ad_mid)<=20&&ABS(ad_left-ad_right)<=20)
         {  
-           if(ad_vr<=50&&ad_vm<=12&&ad_vl<=50)
+           if(ad_vr<=40&&ad_vm<=12&&ad_vl<=40)
            {              
               if(ABS(ad_vr-ad_vl)<=20)
               {
@@ -127,7 +125,7 @@ void CalculateCurrentError()
       }
       
     }
-  if((ad_mid>70||ad_left>70||ad_right>70)&&circle_flag==1)
+  if((ad_mid>60||ad_left>60||ad_right>60)&&circle_flag==1)
     {
       circle_flag=0;
       chaoche=0;
@@ -159,24 +157,49 @@ void CalculateCurrentError()
       }
     }
 
-    
-    if(ad_mid>100)
+    if(circle_flag==0)
     {
-        DirectionPianCha[0] =0;
-    }
-    else
-    {
-        DirectionPianCha[0] = 15.0*ad_mid/ad_max - 15.0;
+      if(ad_mid>100)
+      {
+          DirectionPianCha[0] =0;
+      }
+      else
+      {
+          DirectionPianCha[0] = 15.0*ad_mid/ad_max - 15.0;
 
+      }
+     
+     if(Straight_flag==1)
+     {
+       DirectionPianCha[0]=0.7*DirectionPianCha[0];
+     }
     }
-   
-   if(Straight_flag==1)
+   else if(circle_flag==1)
    {
-     DirectionPianCha[0]=0.8*DirectionPianCha[0];
+      if(ad_mid>50)
+      {
+          DirectionPianCha[0] =15.0*ad_mid/ad_max - 15.0;
+      }
+      else
+      {
+          DirectionPianCha[0] = 15.0*ad_mid/50 - 15.0;
+      }
    }
 
 
     //负的左转
+}
+
+void CalculateCurrentError()
+{
+    u16 ad_left,ad_right,ad_mid,ad_vl,ad_vm,ad_vr;
+   
+   ad_left=ADdata.ResultLeft[0];
+   ad_mid = ADdata.ResultCenter[0];
+   ad_right=ADdata.ResultRight[0];
+   ad_vl=ADdata.V_Left[0];
+   ad_vm=ADdata.V_Mid[0];
+   ad_vr=ADdata.V_Right[0];
 
 
    if(circle_flag==0)
@@ -258,11 +281,11 @@ void CalculateCurrentError()
           
     if(circle_left==1||back_car_dir_rx==1)//左路过圆环
     {
-      if(chaoche==1)
+      if(chaoche==1&&host_flag==0)
        back_car_dir_tx=2;
        if(circle_flag_count<=50) 
        {
-          DirectionPianCha[0] = 0.7*DirectionPianCha[0] ;
+          DirectionPianCha[0] = DirectionPianCha[0] ;
        }   
        else if(circle_flag_count>50)
        {
@@ -298,17 +321,17 @@ void CalculateCurrentError()
         }
         else if(dir_change==0)
           {
-             DirectionPianCha[0] = 0.7*DirectionPianCha[0] ;
+             DirectionPianCha[0] = DirectionPianCha[0] ;
           }
     }
    }
     else if(circle_right==1||back_car_dir_rx==2)//右路过圆环
     {
-      if(chaoche==1)
+      if(chaoche==1&&host_flag==0)
        back_car_dir_tx=1;
          if(circle_flag_count<=50) 
        {
-          DirectionPianCha[0] = -0.7*DirectionPianCha[0];
+          DirectionPianCha[0] = -DirectionPianCha[0];
        }   
        else if(circle_flag_count>50)
        {
@@ -344,7 +367,7 @@ void CalculateCurrentError()
          }
           else if(dir_change==0)
           {
-             DirectionPianCha[0] =-0.7*DirectionPianCha[0];
+             DirectionPianCha[0] =-DirectionPianCha[0];
           }
        
       }
@@ -365,13 +388,13 @@ void DirectionControl()
      
      DoubleError = DirectionPianCha[0] - DirectionPianCha[1];
 
-      if(DoubleError>1)
+      if(DoubleError>0.65)
       {
-        DoubleError=1;
+        DoubleError=0.65;
       }
-      else if(DoubleError<-1)
+      else if(DoubleError<-0.65)
       {
-        DoubleError=-1;
+        DoubleError=-0.65;
       }
        DirectionPianCha[0]=DirectionPianCha[1]+DoubleError;
   
@@ -380,10 +403,10 @@ void DirectionControl()
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
      
-     UP = UP4;
+     UP = UP3;
      UD = UD3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
-   //  Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));
+     //Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));
 
  
      
