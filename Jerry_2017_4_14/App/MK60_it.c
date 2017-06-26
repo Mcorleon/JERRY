@@ -36,18 +36,18 @@ void PIT0_IRQHandler() // 每1MS执行1次
    else if(TimeCount==2)
    {
       Read_AD();//读取AD
-     Circle_Cal();
-     CalculateCurrentError();//计算偏差
-     DirectionControl();//方向控制
+    
    }
    else if(TimeCount==3)
    {    
+      Circle_Cal();
      
     
    }
    else if(TimeCount==4)
    {
-     
+     CalculateCurrentError();//计算偏差
+     DirectionControl();//方向控制
    }
  
    else if(TimeCount==5)

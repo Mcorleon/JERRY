@@ -108,7 +108,7 @@ void Oled_Display()
   LCD_P6x8Str(0,2,"Err:");
   LED_PrintValueF(25, 2, DirectionPianCha[0],1);
   LCD_P6x8Str(65,2,"yuan:");
-  LED_PrintValueF(95, 2, circle_level,1);
+  LED_PrintValueF(95, 2, circle_level,1);//Ramp_flag circle_level 
   LCD_P6x8Str(0,3,"off:");  
   LED_PrintValueF(25, 3,direction_offset,1);
    LCD_P6x8Str(65,3,"Dis:");  

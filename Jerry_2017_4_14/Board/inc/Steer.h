@@ -86,4 +86,5 @@ extern uint8  no_takeoff_tx;
 extern uint8  no_takeoff_rx;
 extern uint8  stop_dajiao;
 extern uint8 circle_level;
+extern uint8 Ramp_flag;
 #endif

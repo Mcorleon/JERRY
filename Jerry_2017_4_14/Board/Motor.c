@@ -96,7 +96,7 @@ void Motor_GetSpeed()
 
 void Motor_Control()
 {
-   if(ADdata.ResultCenter[0]>=80) 
+   if(ADdata.ResultCenter[0]>=80&&Ramp_flag==0) 
    {
       zhidao_num++;
       if(zhidao_num>30)
@@ -200,6 +200,10 @@ void Motor_Control()
          TargetSpeed=60;
        else if(circle_flag==1&&dir_change!=0)
          TargetSpeed=75;
+       
+       if(Ramp_flag==1)
+         TargetSpeed=60;
+       
        if(takeoff_over_rx==1&&host_flag==2)//超车完成了
          {
           stop_flag=0;

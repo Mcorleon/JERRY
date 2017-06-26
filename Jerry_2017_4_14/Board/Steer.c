@@ -30,6 +30,9 @@ uint8  no_takeoff_rx;
 uint8  stop_dajiao;
 uint8 circle_level=0;
 uint8 chaoche=0;
+uint8 Ramp_flag=0;
+uint8 Ramp_count=0;
+uint8 Ramp_Down_flag=0;
 
 
 
@@ -95,7 +98,7 @@ void Circle_Cal()
    ad_vr=ADdata.V_Right[0];
    
    //Ô²»·ÅÐ¶Ï
-   if(ad_left<=55&&ad_mid<=60&&ad_right<=55)
+   if(ad_left<=55&&ad_mid<=60&&ad_right<=55&&Ramp_flag==0)
     {
       if(ad_left>=20&&ad_mid>=20&&ad_right>=20)
       {
@@ -125,7 +128,7 @@ void Circle_Cal()
       }
       
     }
-  if((ad_mid>60||ad_left>60||ad_right>60)&&circle_flag==1)
+  if((ad_mid>=50||ad_left>55||ad_right>55||ad_vm>=55)&&circle_flag==1&&circle_flag_count>=50)
     {
       circle_flag=0;
       chaoche=0;
@@ -156,7 +159,33 @@ void Circle_Cal()
        no_takeoff_tx=1;
       }
     }
-
+ if(Ramp_flag==0&&ad_mid<=60&&ad_left<=60&&ad_right<=60)
+  {
+   Ramp_Down_flag=0;
+  }
+  if((ad_mid>=120||ad_left>=120||ad_right>=120)&&Ramp_flag==0&&Ramp_Down_flag==0)//ÆÂµÀ
+  {
+   if(ad_mid<=160&&ad_left<=160&&ad_right<=160)
+      Ramp_count++;
+  }
+  else
+  {
+    Ramp_count=0;
+  }
+  if(Ramp_count>=5&&Ramp_flag==0)
+  {
+   Ramp_flag=1;
+   Ramp_count=0;
+  }
+  if(Ramp_flag==1&&ad_mid<=100&&ad_left<=100&&ad_right<=100)
+  {
+   Ramp_Down_flag=1;
+  }
+  if(Ramp_Down_flag==1&&(ad_mid>=120||ad_left>=120||ad_right>=120))
+  {
+    Ramp_flag=0;
+  }
+ 
     if(circle_flag==0)
     {
       if(ad_mid>100)
@@ -172,6 +201,10 @@ void Circle_Cal()
      if(Straight_flag==1)
      {
        DirectionPianCha[0]=0.7*DirectionPianCha[0];
+     }
+     else if(Ramp_flag==1)
+     {
+      DirectionPianCha[0]=0.4*DirectionPianCha[0];
      }
     }
    else if(circle_flag==1)
@@ -283,11 +316,11 @@ void CalculateCurrentError()
     {
       if(chaoche==1&&host_flag==0)
        back_car_dir_tx=2;
-       if(circle_flag_count<=50) 
+       if(circle_flag_count<=40) 
        {
           DirectionPianCha[0] = DirectionPianCha[0] ;
        }   
-       else if(circle_flag_count>50)
+       else if(circle_flag_count>40)
        {
           
            if(ad_right>ad_left&&dir_change==0)
@@ -303,21 +336,21 @@ void CalculateCurrentError()
         if(dir_change==2)
         {
           
-           if(circle_flag_count>=100)
-          {
-            if(ad_right>=ad_left)
-            {
-              DirectionPianCha[0] = -DirectionPianCha[0];
-            }
-            else   if(ad_left>ad_right)
-            {
-              DirectionPianCha[0] = DirectionPianCha[0];
-            }
-          }
-          else if(circle_flag_count<100)
-          {
+//           if(circle_flag_count>=100)
+//          {
+//            if(ad_right>=ad_left)
+//            {
+//              DirectionPianCha[0] = -DirectionPianCha[0];
+//            }
+//            else   if(ad_left>ad_right)
+//            {
+//              DirectionPianCha[0] = DirectionPianCha[0];
+//            }
+//          }
+//          else if(circle_flag_count<100)
+//          {
            DirectionPianCha[0] = -DirectionPianCha[0] ;
-          }
+         // }
         }
         else if(dir_change==0)
           {
@@ -329,11 +362,11 @@ void CalculateCurrentError()
     {
       if(chaoche==1&&host_flag==0)
        back_car_dir_tx=1;
-         if(circle_flag_count<=50) 
+         if(circle_flag_count<=40) 
        {
           DirectionPianCha[0] = -DirectionPianCha[0];
        }   
-       else if(circle_flag_count>50)
+       else if(circle_flag_count>40)
        {
            
            if(ad_left>ad_right&&dir_change==0)
@@ -349,21 +382,21 @@ void CalculateCurrentError()
         if(dir_change==1)
          {
           
-           if(circle_flag_count>=100)
-           {
-             if(ad_left>=ad_right)
-            {
-              DirectionPianCha[0] = DirectionPianCha[0];
-            }
-            else   if(ad_right>ad_left)
-            {
-              DirectionPianCha[0] = -DirectionPianCha[0];
-            }
-           }
-           else if(circle_flag_count<100)
-           {
+//           if(circle_flag_count>=100)
+//           {
+//             if(ad_left>=ad_right)
+//            {
+//              DirectionPianCha[0] = DirectionPianCha[0];
+//            }
+//            else   if(ad_right>ad_left)
+//            {
+//              DirectionPianCha[0] = -DirectionPianCha[0];
+//            }
+//           }
+//           else if(circle_flag_count<100)
+//           {
             DirectionPianCha[0] = DirectionPianCha[0];
-           }
+           //}
          }
           else if(dir_change==0)
           {
@@ -403,7 +436,7 @@ void DirectionControl()
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
      
-     UP = UP3;
+     UP = UP0;
      UD = UD3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
      //Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));

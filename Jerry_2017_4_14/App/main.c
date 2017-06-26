@@ -64,6 +64,10 @@ void main()
         PTD15_OUT=1;
         PTA17_OUT=1;
        }
+       if(Ramp_flag==1)
+         LED2=0;
+       else
+         LED2=1;
         if(host_flag==0)//前车只发送超声波 后车只接收
        {
         PTC6_OUT=1;
