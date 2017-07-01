@@ -25,7 +25,7 @@ void PIT0_IRQHandler() // Ã¿1MSÖ´ÐÐ1´Î
     }
     if(Wait_to_go_flag==1)
     {
-     if(ABDistance>400)
+     if(ABDistance>550)
      { 
        start_flag=1;
        Wait_to_go_flag=0;

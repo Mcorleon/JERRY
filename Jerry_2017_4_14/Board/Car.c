@@ -55,6 +55,12 @@ void BSP_init()
          if(BSP6==1)
         {
           overtake_mode=1;
+          ABDistance_set=600;
+        }
+        else  if(BSP6==0)
+        {
+         overtake_mode=0;
+          ABDistance_set=450;
         }
 }
 

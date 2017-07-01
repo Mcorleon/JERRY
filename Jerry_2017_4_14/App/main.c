@@ -53,7 +53,7 @@ void main()
        PTE12_OUT=1;
          
         Oled_Display();//液晶显示
-       send_data();//发送数据给上位机
+     //  send_data();//发送数据给上位机
        if(circle_flag==1)
        {
         PTD15_OUT=0;

@@ -32,6 +32,8 @@ uint8 circle_level=0;
 uint8 chaoche=0;
 uint8 Ramp_flag=0;
 uint8 Ramp_count=0;
+int Ramp_time=0;
+uint8 Ramp_start=0;
 uint8 Ramp_Down_flag=0;
 
 
@@ -98,13 +100,13 @@ void Circle_Cal()
    ad_vr=ADdata.V_Right[0];
    
    //圆环判断
-   if(ad_left<=55&&ad_mid<=60&&ad_right<=55&&Ramp_flag==0)
+   if(ad_left<=55&&ad_mid<=65&&ad_right<=55&&Ramp_flag==0&&Ramp_time==0)
     {
       if(ad_left>=20&&ad_mid>=20&&ad_right>=20)
       {
         if(ABS(ad_left-ad_mid)<=20&&ABS(ad_right-ad_mid)<=20&&ABS(ad_left-ad_right)<=20)
         {  
-           if(ad_vr<=40&&ad_vm<=12&&ad_vl<=40)
+           if(ad_vr<=50&&ad_vm<=12&&ad_vl<=50)
            {              
               if(ABS(ad_vr-ad_vl)<=20)
               {
@@ -128,7 +130,7 @@ void Circle_Cal()
       }
       
     }
-  if((ad_mid>=50||ad_left>55||ad_right>55||ad_vm>=55)&&circle_flag==1&&circle_flag_count>=50)
+  if((ad_mid>=55||ad_vm>=55)&&circle_flag==1&&circle_flag_count>=80)
     {
       circle_flag=0;
       chaoche=0;
@@ -159,13 +161,13 @@ void Circle_Cal()
        no_takeoff_tx=1;
       }
     }
- if(Ramp_flag==0&&ad_mid<=60&&ad_left<=60&&ad_right<=60)
+
+   if(Ramp_flag==0&&ad_mid<=60&&ad_left<=60&&ad_right<=60)
   {
    Ramp_Down_flag=0;
   }
-  if((ad_mid>=120||ad_left>=120||ad_right>=120)&&Ramp_flag==0&&Ramp_Down_flag==0)//坡道
+  if((ad_mid>=120||ad_left>=120||ad_right>=120)&&Ramp_flag==0&&Ramp_Down_flag==0&&DirectionPianCha[0]<=3&&circle_flag==0)//坡道
   {
-   if(ad_mid<=160&&ad_left<=160&&ad_right<=160)
       Ramp_count++;
   }
   else
@@ -175,6 +177,7 @@ void Circle_Cal()
   if(Ramp_count>=5&&Ramp_flag==0)
   {
    Ramp_flag=1;
+   Ramp_start=1;
    Ramp_count=0;
   }
   if(Ramp_flag==1&&ad_mid<=100&&ad_left<=100&&ad_right<=100)
@@ -184,6 +187,15 @@ void Circle_Cal()
   if(Ramp_Down_flag==1&&(ad_mid>=120||ad_left>=120||ad_right>=120))
   {
     Ramp_flag=0;
+  }
+  if(Ramp_start==1)//坡道计时，防止下坡判圆环
+  {
+   Ramp_time++;
+   if(Ramp_time>=400)
+   {
+     Ramp_time=0;
+     Ramp_start=0;
+   }
   }
  
     if(circle_flag==0)
@@ -204,7 +216,7 @@ void Circle_Cal()
      }
      else if(Ramp_flag==1)
      {
-      DirectionPianCha[0]=0.4*DirectionPianCha[0];
+      DirectionPianCha[0]=0.3*DirectionPianCha[0];
      }
     }
    else if(circle_flag==1)
@@ -237,7 +249,7 @@ void CalculateCurrentError()
 
    if(circle_flag==0)
    {
-      if(ABS(DirectionPianCha[1])>=10)
+      if(ABS(DirectionPianCha[1])>=7)
      {
         if(DirectionPianCha[1]>0)
         {
@@ -287,25 +299,27 @@ void CalculateCurrentError()
        if(DirectionPianCha[1]>0)
        {
           circle_right=1;    //前车右过 通知后车左过
-          if(chaoche==1)
+          if(chaoche==1&&overtake_mode==1)
           back_car_dir_tx=1;
        }
        else if(DirectionPianCha[1]<0)
        {
           circle_left=1;          //前车左过 通知后车右过
-          if(chaoche==1)
+          if(chaoche==1&&overtake_mode==1)
           back_car_dir_tx=2;
        }
      }
-     else  if(circle_left==0&&circle_right==0&& host_flag==1&&(overtake_mode==0||chaoche==0)) //后车在不超车模式下判断姿态
+     else  if(circle_left==0&&circle_right==0&& host_flag==1&&(overtake_mode==0||chaoche==0||no_takeoff_rx==1)) //后车在不超车模式下判断姿态
      {
        if(DirectionPianCha[1]>0)
        {
-          circle_right=1;   
+          circle_right=1;
+          back_car_dir_rx=0;
        }
        else if(DirectionPianCha[1]<0)
        {
-          circle_left=1;          
+          circle_left=1;
+          back_car_dir_rx=0;          
        }
      }
           circle_flag_count++;//圆环计数 5MS一次
@@ -314,16 +328,16 @@ void CalculateCurrentError()
           
     if(circle_left==1||back_car_dir_rx==1)//左路过圆环
     {
-      if(chaoche==1&&host_flag==0)
+      if(chaoche==1&&overtake_mode==1&&host_flag==0)
        back_car_dir_tx=2;
-       if(circle_flag_count<=40) 
+       if(circle_flag_count<=50) 
        {
           DirectionPianCha[0] = DirectionPianCha[0] ;
        }   
-       else if(circle_flag_count>40)
+       else if(circle_flag_count>50)
        {
           
-           if(ad_right>ad_left&&dir_change==0)
+           if(ad_right>=ad_left&&dir_change==0)
            {
             dir_change=2;
              if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
@@ -360,16 +374,16 @@ void CalculateCurrentError()
    }
     else if(circle_right==1||back_car_dir_rx==2)//右路过圆环
     {
-      if(chaoche==1&&host_flag==0)
+      if(chaoche==1&&overtake_mode==1&&host_flag==0)
        back_car_dir_tx=1;
-         if(circle_flag_count<=40) 
+         if(circle_flag_count<=50) 
        {
           DirectionPianCha[0] = -DirectionPianCha[0];
        }   
-       else if(circle_flag_count>40)
+       else if(circle_flag_count>50)
        {
            
-           if(ad_left>ad_right&&dir_change==0)
+           if(ad_left>=ad_right&&dir_change==0)
            {
             dir_change=1;
            if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
@@ -436,7 +450,7 @@ void DirectionControl()
      DirectionPianCha[2] = DirectionPianCha[1];        
      DirectionPianCha[1] = DirectionPianCha[0];
      
-     UP = UP0;
+     UP = UP2;
      UD = UD3;
      Steer_P= (Fuzzy_Direction_P(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100)))/100.0;
      //Steer_D= Fuzzy_Direction_D(ABS(DirectionPianCha[0]*10),ABS(DoubleError*100));

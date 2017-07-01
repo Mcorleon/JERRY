@@ -135,7 +135,7 @@ void Motor_Control()
 //          UFF=UFF4; 
 //        }
        
-       UFF=UFF4;
+       UFF=UFF1;
        Track_complexity=ABS(DirectionPianCha[0]*10) ;                //赛道复杂程度
        Prospect_See =ABS(DoubleError*100);  
        TargetSpeed = FuzzySet_Speed(Track_complexity,Prospect_See);
