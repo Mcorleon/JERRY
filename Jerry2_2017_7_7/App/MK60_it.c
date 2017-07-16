@@ -34,19 +34,19 @@ void PIT0_IRQHandler() // 每1MS执行1次
     
      if(zhidao_OT==1)//直道超车贴路边
    {
-     if(RunTime==700&&host_flag==0)
+     if(RunTime==600&&host_flag==0)
      {
       stop_flag=1;
      }
-     if(RunTime==2000&&host_flag==0)
+     if(RunTime==2500&&host_flag==0)
      {
        stop_flag=0;
      }
-     if(RunTime==2350&&host_flag==0)
+     if(RunTime==2650&&host_flag==0)
      {
        host_flag=1;
      }
-     if(RunTime==2300&&host_flag==1)
+     if(RunTime==2600&&host_flag==1)
      {
      host_flag=0;
      }
@@ -74,8 +74,8 @@ void PIT0_IRQHandler() // 每1MS执行1次
      Motor_Control();//速度控制
    //Motor_SetSpeed(2000);
 
-     if((realSpeed<=15&&overtake_mode==0&&RunTime>3000)||(Motor_Duty>=5000&&realSpeed<5&&RunTime>1000))
-       Motor_SetSpeed(0);
+//     if(realSpeed<=15&&overtake_mode==0&&RunTime>3000)
+//       Motor_SetSpeed(0);
      
      
      TimeCount=0;

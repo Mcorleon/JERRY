@@ -21,7 +21,7 @@ uint8 stop_flag=0;
 uint8 start_flag=0;
 u16 W_time = 0;                       //弯道时间
 uint8 Instraightjishu;
-uint16 ABDistance_set =450;
+uint16 ABDistance_set =550;
 int16 ABD_err=0;
 int16 ABD_last_err=0;
 int16 ABD_err_err=0;
@@ -115,51 +115,57 @@ void Motor_Control()
 
   if(host_flag == 0)//前车
   {
-     if(sp_level==0)
-    {
-      UFF=UFF4;
-    }
-    else if(sp_level==1)
-    {
-       UFF=UFF2;
-    }
-    else if(sp_level==2)
-    {
-       UFF=UFF0;
-    } 
+       if(BSP1==1)
+        {
+         UFF=UFF0;
+         sp_level=1;
+        }
+        else if(BSP2==1)
+        {
+          UFF=UFF2;
+          sp_level=2;
+        }
+        else if(BSP3==1)
+        {
+          UFF=UFF4;
+          sp_level=3;
+        }
        Track_complexity=ABS(DirectionPianCha[0]*10) ;                //赛道复杂程度
        Prospect_See =ABS(DoubleError*100);  
        TargetSpeed = FuzzySet_Speed(Track_complexity,Prospect_See);
   }
   else if(host_flag==1)//后车
-  {
+  {    
+       if(BSP1==1)
+        {
+         UFF=UFF0;
+         sp_level=1;
+        }
+        else if(BSP2==1)
+        {
+          UFF=UFF2;
+          sp_level=2;
+        }
+        else if(BSP3==1)
+        {
+          UFF=UFF4;
+          sp_level=3;
+        }
        Track_complexity=ABS(DirectionPianCha[0]*10) ;                //赛道复杂程度
        Prospect_See =ABS(DoubleError*100); 
-     if(sp_level==0)
-    {
-      UFF=UFF4;
-    }
-    else if(sp_level==1)
-    {
-       UFF=UFF2;
-    }
-    else if(sp_level==2)
-    {
-       UFF=UFF0;
-    } 
         TargetSpeed = FuzzySet_Speed(Track_complexity,Prospect_See);
-    if(sp_level==0)
-    {
-      UFF=UFF5;
-    }
-    else if(sp_level==1)
-    {
-       UFF=UFF3;
-    }
-    else if(sp_level==2)
-    {
-       UFF=UFF1;
-    } 
+         if(BSP1==1)
+        {
+         UFF=UFF1;
+        }
+        else if(BSP2==1)
+        {
+          UFF=UFF3;
+        }
+        else if(BSP3==1)
+        {
+          UFF=UFF5;
+        }
         Maxspeed =FuzzySet_Speed(Track_complexity,Prospect_See);
          Minspeed =65;
 //        UFF=UFF0;
@@ -210,10 +216,10 @@ void Motor_Control()
        else if(circle_flag==1&&dir_change==0)
          TargetSpeed=60;
        else if(circle_flag==1&&dir_change!=0)
-         TargetSpeed=75;
+         TargetSpeed=70;
        
        if(Ramp_flag==1)
-         TargetSpeed=80;
+         TargetSpeed=75;
        
        if(takeoff_over_rx==1&&host_flag==2)//超车完成了
          {
@@ -254,6 +260,8 @@ void Motor_Control()
      Motor_Duty=0;
    if(host_flag==0&&RunTime<1200&&start_flag==1&&zhidao_OT==1)
     Motor_Duty=2200;
+    if(host_flag==1&&RunTime<1200&&start_flag==1&&zhidao_OT==1)
+    Motor_Duty=3500;
    
     Motor_SetSpeed(Motor_Duty);
 }

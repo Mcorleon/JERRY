@@ -55,14 +55,16 @@ void BSP_init()
         
         
         //超车模式选择
-        if(BSP3==1)
-        {
-         zhidao_OT=1;
-        }
-        else  if(BSP3==0)
-        {
-         zhidao_OT=0;
-        }
+        
+          
+//        if(BSP4==1)
+//        {
+//         zhidao_OT=1;
+//        }
+//        else  if(BSP4==0)
+//        {
+//         zhidao_OT=0;
+//        }
          if(BSP5==1)
         {
          host_flag=1;
@@ -71,16 +73,16 @@ void BSP_init()
         {
          host_flag=0;
         }
-         if(BSP4==1)
-        {
-          overtake_mode=1;
-          ABDistance_set=600;
-        }
-        else  if(BSP4==0)
-        {
-         overtake_mode=0;
-          ABDistance_set=550;
-        }
+//         if(BSP4==1)
+//        {
+//          overtake_mode=1;
+//          ABDistance_set=600;
+//        }
+//        else  if(BSP4==0)
+//        {
+//         overtake_mode=0;
+//          ABDistance_set=550;
+//        }
 }
 
 //超声波初始化
@@ -194,28 +196,28 @@ else if(page==2)
       DELAY_MS(200);
      } 
    }
-//   if(KEY3==0)
-//   {
-//     DELAY_MS(10);
-//     if(KEY3==0)
-//     { 
-//      P_level++;
-//      if(P_level>5)
-//        P_level=0;
-//     }
-//     DELAY_MS(200);
-//   }
-  if(KEY1==0)
+   if(KEY1==0)
    {
      DELAY_MS(10);
      if(KEY1==0)
      { 
-      sp_level++;
-      if(sp_level>2)
-        sp_level=0;
+      P_level++;
+      if(P_level>5)
+        P_level=0;
      }
      DELAY_MS(200);
    }
+//  if(KEY1==0)
+//   {
+//     DELAY_MS(10);
+//     if(KEY1==0)
+//     { 
+//      sp_level++;
+//      if(sp_level>2)
+//        sp_level=0;
+//     }
+//     DELAY_MS(200);
+//   }
 }
 
 float var[8];

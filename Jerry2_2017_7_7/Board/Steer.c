@@ -102,61 +102,60 @@ void Circle_Cal()
    ad_vr=ADdata.V_Right[0];
    
    //圆环判断
-//   if(ad_left<=50&&ad_mid<=60&&ad_right<=50&&Ramp_flag==0&&Ramp_time==0&&RunTime>0)
-//    {
-//      if(ad_left>=20&&ad_mid>=30&&ad_right>=20)
-//      {
-//        if(ABS(ad_left-ad_mid)<=18&&ABS(ad_right-ad_mid)<=18&&ABS(ad_left-ad_right)<=18)
-//        {  
-//           if(ad_vr<=40&&ad_vm<=15&&ad_vl<=40)
-//           {              
-//              if(ABS(ad_vr-ad_vl)<=20)
-//              {
-//                if(circle_flag==0)
-//                {
-//                    circle_flag=1;
-//                    circle_level++;
-//                    if((BSP1==1&&circle_level==1)||(BSP2==1&&circle_level==2)||(BSP3==1&&circle_level==3))
-//                    {
-//                      chaoche=1;//用拨码开关选择哪几个圆环超车
-//                    }
-//                    else
-//                    {
-//                     chaoche=0;
-//                    }
-//                }
-//              }
-//           }
-//        } 
-//        
-//      }
-//      
-//    }
-    if(ad_left<=40&&ad_mid<=50&&ad_right<=40&&Ramp_flag==0&&Ramp_time==0)
-    {
-      if(ad_left>=20&&ad_mid>=25&&ad_right>=20)
-      {    
-           if(ad_vr<=40&&ad_vm<=14&&ad_vl<=40)
-           {    
-             
-                if(circle_flag==0)
+   if(BSP4==1)
+   {
+     if(ad_left<=50&&ad_mid<=60&&ad_right<=50&&Ramp_flag==0&&Ramp_time==0&&RunTime>0)
+      {
+        if(ad_left>=20&&ad_mid>=30&&ad_right>=20)
+        {
+          if(ABS(ad_left-ad_mid)<=18&&ABS(ad_right-ad_mid)<=18&&ABS(ad_left-ad_right)<=18)
+          {  
+             if(ad_vr<=40&&ad_vm<=15&&ad_vl<=40)
+             {              
+                if(ABS(ad_vr-ad_vl)<=20)
                 {
-                    circle_flag=1;
-                    circle_start=1;
-                    circle_level++;
-                    if((BSP1==1&&circle_level==1)||(BSP2==1&&circle_level==2)||(BSP3==1&&circle_level==3))
-                    {
-                      chaoche==1;
-                    }
-                    else
-                    {
-                     chaoche=0;
-                    }
+                  if(circle_flag==0)
+                  {
+                      circle_flag=1;
+                      circle_level++;
+                      
+                  }
                 }
-            
-           }
+             }
+          } 
+          
+        }
+        
       }
-    }
+   }
+   else if(BSP4==0)
+   {
+      if(ad_left<=48&&ad_mid<=55&&ad_right<=48&&Ramp_flag==0&&Ramp_time==0)
+      {
+        if(ad_left>=25&&ad_mid>=25&&ad_right>=25)
+        {    
+             if(ad_vr<=40&&ad_vm<=15&&ad_vl<=40)
+             {    
+               
+                  if(circle_flag==0)
+                  {
+                      circle_flag=1;
+                      circle_start=1;
+                      circle_level++;
+                      if((BSP1==1&&circle_level==1)||(BSP2==1&&circle_level==2)||(BSP3==1&&circle_level==3))
+                      {
+                        chaoche==1;
+                      }
+                      else
+                      {
+                       chaoche=0;
+                      }
+                  }
+              
+             }
+        }
+      }
+   }
     if(circle_start==1)
     {
      circle_time++;
@@ -166,7 +165,7 @@ void Circle_Cal()
       circle_start=0;
      }
     }
-  if((ad_mid>=55||ad_vm>=55)&&circle_flag==1&&circle_flag_count>=80)
+  if((ad_mid>=55||ad_vm>=55||ad_right>=60||ad_left>=60)&&circle_flag==1&&circle_flag_count>=80)
     {
       circle_flag=0;
       chaoche=0;
@@ -214,14 +213,14 @@ void Circle_Cal()
    Ramp_count=0;
   }
 
-   if(Ramp_time>=230)
+   if(Ramp_time>=200)
    {
      Ramp_flag=0;
    }
   if(Ramp_start==1)//坡道计时，防止下坡判圆环
   {
    Ramp_time++;
-   if(Ramp_time>=400)
+   if(Ramp_time>=300)
    {
      Ramp_time=0;
      Ramp_start=0;
@@ -250,11 +249,11 @@ void Circle_Cal()
      }
      if(zhidao_OT==1)//直道超车
      {
-     if(RunTime<=650&&host_flag==0)
+     if(RunTime<=550&&host_flag==0)
        DirectionPianCha[0]=0;
-     if(RunTime>650&&RunTime<=1500&&host_flag==0)
+     if(RunTime>550&&RunTime<=1500&&host_flag==0)
         DirectionPianCha[0]=0.5;
-      if(RunTime<=900&&host_flag==1)
+      if(RunTime<=1200&&host_flag==1)
         DirectionPianCha[0]=0;
      }
     }
@@ -372,11 +371,11 @@ void CalculateCurrentError()
        back_car_dir_tx=2;
       if(back_car_dir_rx==1)//超车延时大30
       {
-       if(circle_flag_count<=50) 
+       if(circle_flag_count<=22) 
        {
           DirectionPianCha[0]=-13.5;
        }   
-       else if(circle_flag_count>50)
+       else if(circle_flag_count>22)
        {
            if(ad_right>=ad_left&&dir_change==0)
            {
@@ -395,11 +394,11 @@ void CalculateCurrentError()
       }
       else
       {
-       if(circle_flag_count<=25) 
+       if(circle_flag_count<=22) 
        {
           DirectionPianCha[0]=-13.5;
        }   
-       else if(circle_flag_count>25)
+       else if(circle_flag_count>22)
        {
            if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
             {
@@ -428,11 +427,11 @@ void CalculateCurrentError()
        back_car_dir_tx=1;
       if(back_car_dir_rx==2)
       {
-        if(circle_flag_count<=50) 
+        if(circle_flag_count<=22) 
        {
           DirectionPianCha[0]=13.5;
        }   
-       else if(circle_flag_count>50)
+       else if(circle_flag_count>22)
        {
            if(ad_left>=ad_right&&dir_change==0)
            {
@@ -452,12 +451,12 @@ void CalculateCurrentError()
      }
       else
       {
-       if(circle_flag_count<=25) 
+       if(circle_flag_count<=22) 
        {
         //  DirectionPianCha[0] = -DirectionPianCha[0];
           DirectionPianCha[0]=13.5;
        }   
-       else if(circle_flag_count>25)
+       else if(circle_flag_count>22)
        {
            if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
             {
@@ -467,11 +466,6 @@ void CalculateCurrentError()
            if(ad_left>=ad_right&&dir_change==0)
            {
             dir_change=1;
-//           if( host_flag==0&&overtake_mode==1&&chaoche==1)//前车停下 超车准备
-//            {
-//             stop_flag=1;
-//             host_flag=2;
-//            }
            }
          
         if(dir_change==1)
@@ -518,7 +512,7 @@ void DirectionControl()
      DirectionPianCha[1] = DirectionPianCha[0];
      if(circle_flag==1)
      {
-      Steer_P=5.9;
+      Steer_P=6.2;
      }
      else
      {

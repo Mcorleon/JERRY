@@ -5,7 +5,7 @@ Jerry2
 Jerry2
 Jerry2
 Jerry2        
-Jerry2  绿灰蓝红灰绿蓝红
+Jerry2  绿灰蓝红灰绿蓝红 横95 95 95 竖 85 85 85
 **************************************/
 #include "include.h"
 
@@ -25,10 +25,10 @@ void main()
       LCD_Init();//液晶
       pit_init_ms(PIT0,1);//1MS中断
 
-      while(!nrf_init())                  //初始化NRF24L01+ ,等待初始化成功为止
-      {
-       
-      }
+//      while(!nrf_init())                  //初始化NRF24L01+ ,等待初始化成功为止
+//      {
+//       
+//      }
       LED1=0;
       set_vector_handler(PIT0_VECTORn ,PIT0_IRQHandler); 
       set_vector_handler(PORTA_VECTORn,PORTA_IRQHandler);
